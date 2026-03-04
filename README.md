@@ -1,7 +1,7 @@
 # Transformers
 
 Topics Covered:
-
+### Covering the Pre-requisites
 1. Encoder Decoder
    - Architecture of Encoder and Decoders
    - Encoder Forward Pass
@@ -14,3 +14,5 @@ Topics Covered:
    - Stating the main Problems with Vanilla Encoder Decoder Architecture
    - Deep dive on attention mechanism
    - Bahdanau Attention VS Luong Attention
+
+### Transformers

@@ -16,4 +16,4 @@ Topics Covered:
    - Bahdanau Attention VS Luong Attention
 
 ### Transformers
- 
+ The main research paper used for this : [https://arxiv.org/pdf/1706.03762]

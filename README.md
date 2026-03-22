@@ -27,4 +27,9 @@ Topics Covered:
    - Explaination behind Scaled Dot Product
    - Gemoetric Intuition
    - Why named 'Self Attention'
-   - 
+   - The problem with Self Attention - Why do we need multi head attention
+2. Multi Head Attention
+   - In depth explaination with example
+   - Matrix Calculation
+   - Problem with Self Attention - in context of sequence
+3. Positional Encoding

@@ -17,3 +17,14 @@ Topics Covered:
 
 ### Transformers
  The main research paper used for this : [https://arxiv.org/pdf/1706.03762]
+
+1. Self Attention
+   - Introduction to Self Attention
+   - Explaining the need for self attention
+   - converting the embeddings to context aware embeddings
+   - Query - Key - Value concept
+   - Parallel Operations
+   - Explaination behind Scaled Dot Product
+   - Gemoetric Intuition
+   - Why named 'Self Attention'
+   - 

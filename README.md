@@ -33,3 +33,13 @@ Topics Covered:
    - Matrix Calculation
    - Problem with Self Attention - in context of sequence
 3. Positional Encoding
+   - Gradually explaining positional encoding concept from scratch using examples
+   - getting positional encoding for a vector solved
+   - THe Linear relationship property
+4. Layer Normalization
+   - Normalization
+     - Where to apply?
+     - Benefits of normalization
+     - Revisiting Batch Normalization
+     - Reasoning behind why not using batch normalization
+     - Explaining Layer Normalization

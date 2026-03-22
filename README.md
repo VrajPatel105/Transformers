@@ -43,3 +43,7 @@ Topics Covered:
      - Revisiting Batch Normalization
      - Reasoning behind why not using batch normalization
      - Explaining Layer Normalization
+5. Transformer Architecture
+   - Encoder
+     - Explaining all the parts step by step
+       - inputs -> tokens -> embeddings -> positional encoding -> multi head attention -> add and normalization -> feed forward network -> add and normalization -> final output -> repeat from multi head attentino to add to final output 6 times to get final output

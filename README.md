@@ -49,4 +49,10 @@ Topics Covered:
        - inputs -> tokens -> embeddings -> positional encoding -> multi head attention -> add and normalization -> feed forward network -> add and normalization -> final output
        - repeat from multi head attentino to add to final output 6 times -> final output
    - Masked Self Attention
-     - 
+     - During Training
+       - Sequential (time series)
+       - Parallel
+     - During Inference
+   - Cross Attention
+   - Transformer Decoder Architecture while Training -> Non-AutoRegressive
+   - Transformer Decoder ARchitecture while Inference -> AutoRegressive

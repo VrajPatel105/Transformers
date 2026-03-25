@@ -56,4 +56,5 @@ Topics Covered:
    - Cross Attention
    - Transformer Decoder Architecture while Training -> Non-AutoRegressive
    - Transformer Decoder ARchitecture while Inference -> AutoRegressive
-<img width="1920" height="16000" alt="erteryeryew" src="https://github.com/user-attachments/assets/6240dc62-c77e-45af-ad7c-3200e3afbcf3" />
+   
+<img width="970" height="1249" alt="image" src="https://github.com/user-attachments/assets/b3e6953d-cc0d-4741-89a3-219c9c44e8f8" />

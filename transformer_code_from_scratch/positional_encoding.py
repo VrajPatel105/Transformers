@@ -4,10 +4,11 @@ import math
 
 class PositionalEncoding(nn.Module):
 
-    def __init__(self, d_model, max_seq_len):
+    def __init__(self, d_model, max_seq_len, dropout):
         super().__init__()
         self.d_model = d_model
         self.max_seq_len = max_seq_len
+        self.dropout = nn.Dropout(dropout)
 
         pe_tensor = torch.zeros((max_seq_len, d_model))
 
@@ -29,5 +30,5 @@ class PositionalEncoding(nn.Module):
     def forward(self, x):
       # x coming in has shape (batch, seq_len, d_model) where seq_len might be shorter than max_seq_len.
       # But self.buffer_tensor is always (max_seq_len, d_model)
-        return x + self.buffer_tensor[:x.size(1), :]
-
+        x =  x + self.buffer_tensor[:x.size(1), :]
+        return self.dropout(x)

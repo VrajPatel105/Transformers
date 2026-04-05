@@ -35,7 +35,7 @@ class Transformer(nn.Module):
     def encode(self, src, src_mask):
         src = self.src_embeddings(src)
         src = self.src_pos(src)
-        return src.encoder(src, src_mask)
+        return self.encoder(src, src_mask)
     
     def decode(self, encoder_output, src_mask, target, target_mask):
         target = self.target_embeddings(target)

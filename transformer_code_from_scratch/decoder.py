@@ -21,6 +21,8 @@ class DecoderBlock(nn.Module):
 
         return x
     
+# src_mask    →  "don't look at padding"            (encoder)
+# target_mask →  "don't look at padding or future"  (decoder)
 
 class Decoder(nn.Module):
 

@@ -5,7 +5,7 @@ from layer_norm import LayerNorm
 class ResidualConnection(nn.Module):
 
     def __init__(self, dropout):
-        super().__init()
+        super().__init__()
         self.dropout = nn.Dropout(dropout)
         self.norm = LayerNorm()
 

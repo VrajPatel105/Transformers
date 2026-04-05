@@ -7,7 +7,7 @@ class LayerNorm(nn.Module):
         super().__init__()
         self.eps = eps
         self.alpha = nn.Parameter(torch.ones(1)) # multiplicated one and Parameter makes the parameter learnable
-        self.bias = nn.Parameter(torch.zeroes(1)) # added one
+        self.bias = nn.Parameter(torch.zeros(1)) # added one
     
     def forward(self, x):
         mean = x.mean(dim = -1, keepdim=True)

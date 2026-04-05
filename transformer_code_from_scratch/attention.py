@@ -26,14 +26,14 @@ class MultiHeadAttention(nn.Module):
       attention_scores = (q @ k.transpose(-2,-1)) / math.sqrt(head_dim) # @ means matrix multiplication , and # transpose(-2,-1) -> transposing the last two dims. so it goes from seq_len, head_dim to head_dim , seq_len
 
       # defining the mask
-      if mask:
+      if mask is not None:
         attention_scores.masked_fill_(mask == 0, -1e9) # -1e9 is simply -infinity
       attention_scores = attention_scores.softmax(dim = -1)
 
       if dropout is not None:
         attention_scores = dropout(attention_scores)
 
-        return (attention_scores @ v), attention_scores # this other attention_scores is used for visualizing
+      return (attention_scores @ v), attention_scores # this other attention_scores is used for visualizing
 
 
     def forward(self, q, k, v, mask=None):
@@ -49,11 +49,11 @@ class MultiHeadAttention(nn.Module):
         k = k.view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1,2)
         v = v.view(batch_size, seq_len, self.num_heads, self.head_dim).transpose(1,2)
 
-        x, self.attention_scores = MultiHeadAttention(q, k, v, mask, self.dropout)
+        x, self.attention_scores = MultiHeadAttention.attention(q, k, v, mask, self.dropout)
 
         # now we have the smaller each head matrices and we combine all of them to get the d_model x d_model matrix and then multiply with the output matrix to get the final multiheadattention output
         # (Batch, num_heads, seq_len, head_dim) -> (Batch, seq_len, num_heads, head_dim) -> (Batch, seq_len, d_model)
-        x = x.transpose(1,2).contiguous().view(x.shape[0], -1, self.h * self.head_dim) 
+        x = x.transpose(1,2).contiguous().view(x.shape[0], -1, self.num_heads * self.head_dim) 
 
         # (Batch, seq_len, d_model) as input to -> (Batch, seq_len, d_model) as output
         return self.Wo(x)

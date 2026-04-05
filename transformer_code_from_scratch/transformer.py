@@ -1,12 +1,10 @@
 import math
 import torch.nn as nn
-from encoder import Encoder
-from decoder import Decoder
+from encoder import Encoder, EncoderBlock
+from decoder import Decoder, DecoderBlock
 from decoder import ProjectionLayer
 from attention import MultiHeadAttention
 from feed_forward import FeedForward
-from residual_connections import ResidualConnection
-from layer_norm import LayerNorm
 from positional_encoding import PositionalEncoding
 
 
@@ -63,7 +61,7 @@ def build_transformer(src_vocab_size: int, target_vocab_size: int, src_seq_len: 
     for _ in range(N):
         encoder_self_attention_block = MultiHeadAttention(d_model, h, dropout)
         feed_forward_block = FeedForward(d_model, d_ff, dropout)
-        encoder_block = Encoder(d_model, encoder_self_attention_block, feed_forward_block, dropout)
+        encoder_block = EncoderBlock(encoder_self_attention_block, feed_forward_block, dropout)
         encoder_blocks.append(encoder_block)
 
     # Create the decoder blocks
@@ -72,12 +70,12 @@ def build_transformer(src_vocab_size: int, target_vocab_size: int, src_seq_len: 
         decoder_self_attention_block = MultiHeadAttention(d_model, h, dropout)
         decoder_cross_attention_block = MultiHeadAttention(d_model, h, dropout)
         feed_forward_block = FeedForward(d_model, d_ff, dropout)
-        decoder_block = Decoder(d_model, decoder_self_attention_block, decoder_cross_attention_block, feed_forward_block, dropout)
+        decoder_block = DecoderBlock(decoder_self_attention_block, decoder_cross_attention_block, feed_forward_block, dropout)
         decoder_blocks.append(decoder_block)
-    
+
     # Create the encoder and decoder
-    encoder = Encoder(d_model, nn.ModuleList(encoder_blocks))
-    decoder = Decoder(d_model, nn.ModuleList(decoder_blocks))
+    encoder = Encoder(nn.ModuleList(encoder_blocks))
+    decoder = Decoder(nn.ModuleList(decoder_blocks))
 
     # create the projection layer
     projection_layer = ProjectionLayer(d_model, target_vocab_size)

@@ -2,10 +2,15 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset
 
+# main class for dataset
 class BilingualDataset(Dataset):
 
     def __init__(self, ds, tokenizer_src, tokenizer_tgt, src_lang, tgt_lang, seq_len):
-        super().__init__()
+        # we will call it from the main file by these arguments: 
+        # train_ds = BilingualDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
+        # val_ds = BilingualDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
+        
+        super().__init__() # invoking the dataset class constructor
         self.seq_len = seq_len
 
         self.ds = ds

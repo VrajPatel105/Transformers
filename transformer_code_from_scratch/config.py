@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# setting up the config file.
 def get_config():
     return {
         "batch_size": 8,
@@ -13,13 +14,14 @@ def get_config():
         "model_folder": "weights",
         "model_basename": "tmodel_",
         "preload": "latest",
-        "tokenizer_file": "tokenizer_{0}.json",
+        "tokenizer_file": "tokenizer_{0}.json", # --> tokenizer_en.json / tokenizer_it.json
         "experiment_name": "runs/tmodel"
     }
 
+# defining a path for model's weight
 def get_weights_file_path(config, epoch: str):
-    model_folder = f"{config['datasource']}_{config['model_folder']}"
-    model_filename = f"{config['model_basename']}{epoch}.pt"
+    model_folder = f"{config['datasource']}_{config['model_folder']}" # this will give --> opus_books_weights 
+    model_filename = f"{config['model_basename']}{epoch}.pt" # storing it as pytorch file --> tmodel_{epoch}
     return str(Path('.') / model_folder / model_filename)
 
 # Find the latest weights file in the weights folder
@@ -30,4 +32,4 @@ def latest_weights_file_path(config):
     if len(weights_files) == 0:
         return None
     weights_files.sort()
-    return str(weights_files[-1])
+    return str(weights_files[-1]) # this returns the latest model weight's file path

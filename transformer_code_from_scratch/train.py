@@ -53,7 +53,6 @@ def greedy_decode(model, source, source_mask, tokenizer_src, tokenizer_tgt, max_
 
     return decoder_input.squeeze(0)
 
-
 def run_validation(model, validation_ds, tokenizer_src, tokenizer_tgt, max_len, device, print_msg, global_step, writer, num_examples=2):
     model.eval()
     count = 0
@@ -125,10 +124,10 @@ def get_all_sentences(ds, lang):
     for item in ds:
         yield item['translation'][lang]
 
-def get_or_build_tokenizer(config, ds, lang):
-    tokenizer_path = Path(config['tokenizer_file'].format(lang))
-    if not Path.exists(tokenizer_path):
-        # Most code taken from: https://huggingface.co/docs/tokenizers/quicktour
+def get_or_build_tokenizer(config, ds, lang): # building the main tokenizer
+    tokenizer_path = Path(config['tokenizer_file'].format(lang)) # defining the path in the config file. and extracting it here.
+    if not Path.exists(tokenizer_path): # if the path does not exist in the disk, we build the tokenizer, if it already exists, we just load the tokenizer
+        # this tokenizer building code was directly taking from the documentation. 
         tokenizer = Tokenizer(WordLevel(unk_token="[UNK]"))
         tokenizer.pre_tokenizer = Whitespace()
         trainer = WordLevelTrainer(special_tokens=["[UNK]", "[PAD]", "[SOS]", "[EOS]"], min_frequency=2)
@@ -265,7 +264,6 @@ def train_model(config):
             'optimizer_state_dict': optimizer.state_dict(),
             'global_step': global_step
         }, model_filename)
-
 
 if __name__ == '__main__':
     warnings.filterwarnings("ignore")

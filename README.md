@@ -57,7 +57,7 @@ Topics Covered:
    - Transformer Decoder Architecture while Training -> Non-AutoRegressive
    - Transformer Decoder ARchitecture while Inference -> AutoRegressive
 
-### Transformer Code from scratch
+### Repo also includes Transformer Code from scratch - implementation document attached.
 
    <img width="970" height="1249" alt="Screenshot 2026-03-24 212110" src="https://github.com/user-attachments/assets/86f867f8-2e94-4993-94d1-8767bbe469fa" />
 

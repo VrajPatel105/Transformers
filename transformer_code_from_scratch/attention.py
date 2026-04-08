@@ -37,9 +37,10 @@ class MultiHeadAttention(nn.Module):
 
 
     def forward(self, q, k, v, mask=None):
-        q = self.Wq(q)
-        k = self.Wk(k)
-        v = self.Wv(v)
+        q = self.Wq(q) # -> q @ Wq.T
+        k = self.Wk(k) # -> k @ Wk.T
+        v = self.Wv(v) # -> v @ Wv.T
+        # this simply applies the weights + bias on the new incoming data
 
         batch_size = q.shape[0]
         seq_len = q.shape[1]
